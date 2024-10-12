@@ -1,0 +1,115 @@
+
+
+public class cdio1 {
+    public static void main(String[] args) {
+        testDiceRolls(1000);
+        testBothDicesEqualZero(1000);
+        var PlayerOneScore = 0;
+        var PlayerTwoScore = 0;
+
+       
+        while ((PlayerOneScore < 40) && (PlayerTwoScore < 40)){
+           
+            int OnePlayersDiceOne = Dice();
+            int OnePlayersDiceTwo = Dice();
+            
+
+            if ((OnePlayersDiceOne == 1) && (OnePlayersDiceTwo == 1)){
+                System.out.println("first dice: " + OnePlayersDiceOne + " second dice: " + OnePlayersDiceTwo);
+                PlayerOneScore = 0;
+                System.out.println("goodluck next time");
+            }
+            else {
+                 System.out.println("first dice: " + OnePlayersDiceOne + " second dice: " + OnePlayersDiceTwo);
+                int sum1 = OnePlayersDiceOne + OnePlayersDiceTwo;
+                PlayerOneScore += sum1;
+            }
+            
+            System.out.println("Player One Score: " + PlayerOneScore);
+            System.out.println();
+            
+            if (PlayerOneScore >= 40 ){
+
+        
+                System.out.println("player one has won the game w a score of " + PlayerOneScore);
+            
+                break; 
+            }
+            
+            int TwoPlayersDiceOne = Dice();
+            int TwoPlayersDiceTwo = Dice();
+
+            if ((TwoPlayersDiceOne == 1) && (TwoPlayersDiceTwo == 1)){
+               System.out.println("first dice: " + TwoPlayersDiceOne + " second dice: " + TwoPlayersDiceTwo);
+                PlayerTwoScore = 0;
+                System.out.println("goodluck next time");
+            }
+            else {
+                System.out.println("first dice: " + TwoPlayersDiceOne + " second dice: " + TwoPlayersDiceTwo);
+                int sum2 = TwoPlayersDiceOne + TwoPlayersDiceTwo;
+                PlayerTwoScore += sum2;
+            }
+            System.out.println("Player Two Score: " + PlayerTwoScore);
+            System.out.println();
+
+            
+            
+            
+            
+            if (PlayerTwoScore >= 40 ){
+
+                System.out.println("player two has won the game w a score of " + PlayerTwoScore);
+
+                break; 
+            }
+
+        }
+
+    }
+
+    public static int Dice() {
+        int dice = (int)(Math.random() * 6 + 1);   
+        return dice;
+    }
+
+    public static void testDiceRolls(int testRounds) {
+        int[] results = new int[6]; 
+
+        for (int i = 0; i < testRounds; i++) {
+            int dice1 = Dice();
+            int dice2 = Dice();
+
+            
+            if (dice1 >= 1 && dice1 <= 6) {
+                results[dice1 - 1]++; 
+            }
+            // Count the results for the second dice
+            if (dice2 >= 1 && dice2 <= 6) {
+                results[dice2 - 1]++; 
+            }
+        }
+
+        System.out.println("Dice Roll Test Results after " + testRounds + " rounds:");
+        for (int i = 0; i < results.length; i++) {
+            System.out.println("Total " + (i + 1) + "s: " + results[i]);
+        }
+    }  
+
+    public static void testBothDicesEqualZero(int testRounds) {
+        int zeroCount = 0;
+
+        for (int i = 0; i < testRounds; i++) {
+            int dice1 = Dice();
+            int dice2 = Dice();
+
+            // Check if both dice are 0
+            if (dice1 == 1 && dice2 == 1) {
+                zeroCount++;
+            }
+        }
+        System.out.println("Total times both dice were one: " + zeroCount);
+    }  
+
+    
+
+}
